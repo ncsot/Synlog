@@ -1,0 +1,5 @@
+admin;12345;admin
+admina;Aa:12345;admin
+user;password1A];user
+users;Aa:12345];user
+admins;Aa:12345;admin
