@@ -4,7 +4,6 @@
 int main() {
     setlocale(LC_CTYPE,"Russian");
     std::map<std::string, User> users;
-    std::wstring s;
     int menuUsrSelect;
     std::wstring menuStr = L"Выберите действие: \n1) Войти\n2) Добавить пользователя\n3) Для выхода\n";
     std::wstring endStr = L"Программа завершена. До свидания!";
@@ -25,5 +24,6 @@ int main() {
         }
         std::wcout << "\n" << menuStr;
     }
+    std::wcout << endStr << std::endl;
     return 0;
 }

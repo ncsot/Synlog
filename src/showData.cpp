@@ -7,7 +7,6 @@ void showData(std::string& role) {
         std::wcerr << L"Не удалось открыть файл с данными.\n";
         return;
     }
-    
     std::string line;
     while (getline(file, line)) {
         // Разбиваем строку на части по запятой
@@ -17,7 +16,6 @@ void showData(std::string& role) {
         while (getline(iss, part, ',')) {
             parts.push_back(part);
         }
-
         // Проверяем роль пользователя
         if (role == "admin") {
             // Если пользователь - администратор, то выводим всю информацию

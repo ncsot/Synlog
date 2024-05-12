@@ -32,10 +32,12 @@ bool addUser(std::map<std::string, User>& users) {
     if (file.is_open()) {
         file << username << ';' << password << ';' << role << '\n';
         file.close();
-        return true;
     } else {
         std::wcerr << L"Не удалось открыть файл для записи.\n";
         return false;
     }
+    std::wcout << L"Пользователь ";
+    std::cout << username;
+    std::wcout << L" успешно создан." << std::endl;
     return true;
 }

@@ -29,4 +29,5 @@ bool addUser(std::map<std::string, User>& users);
 bool loadUsers(std::map<std::string, User>& users);
 // Показывает данные в зависимости от статуса польз-ля
 void showData(std::string& role);
+// Запрос пароля
 std::string getPassword();
