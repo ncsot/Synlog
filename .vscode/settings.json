@@ -53,5 +53,6 @@
         "typeinfo": "cpp",
         "cstdarg": "cpp",
         "iomanip": "cpp"
-    }
+    },
+    "C_Cpp.default.compilerPath": "C:\\msys64\\ucrt64\\bin\\g++.exe"
 }

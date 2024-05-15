@@ -1,16 +1,18 @@
 //loadUsers.cpp
 #include "../lib/lib.hpp"
 
-bool loadUsers(std::map<std::string, User>& users) {
-    std::ifstream file("users.txt");
+using namespace std;
+
+bool loadUsers(map<string, User>& users) {
+    ifstream file("users.txt");
     if (!file.is_open()) {
-        std::wcerr << L"Файл с пользователями не может быть открыт\n";
+        wcerr << L"Файл с пользователями не может быть открыт\n";
         return false;
     }
-    std::string line;
+    string line;
     while (getline(file, line)) {
-        std::istringstream stringStream(line);
-        std::string username, password, role;
+        istringstream stringStream(line);
+        string username, password, role;
         getline(stringStream, username, ';');
         getline(stringStream, password, ';');
         getline(stringStream, role);

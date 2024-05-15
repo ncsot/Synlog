@@ -1,15 +1,17 @@
 //main.cpp
 #include "../lib/lib.hpp"
 
+using namespace std;
+
 int main() {
     setlocale(LC_CTYPE,"Russian");
-    std::map<std::string, User> users;
+    map<string, User> users;
     int menuUsrSelect;
-    std::wstring menuStr = L"Выберите действие: \n1) Войти\n2) Добавить пользователя\n3) Для выхода\n";
-    std::wstring endStr = L"Программа завершена. До свидания!";
+    wstring menuStr = L"Выберите действие: \n1) Войти\n2) Добавить пользователя\n3) Для выхода\n";
+    wstring endStr = L"Программа завершена. До свидания!";
 
-    std::wcout << menuStr;
-    while (std::cin >> menuUsrSelect) {
+    wcout << menuStr;
+    while (cin >> menuUsrSelect) {
         if (!loadUsers(users)) return 1;
         switch (menuUsrSelect) {
             case 1:
@@ -19,11 +21,11 @@ int main() {
                 addUser(users);
                 break;
             default:
-                std::wcout << endStr << std::endl;
+                wcout << endStr << endl;
                 return 0;
         }
-        std::wcout << "\n" << menuStr;
+        wcout << "\n" << menuStr;
     }
-    std::wcout << endStr << std::endl;
+    wcout << endStr << endl;
     return 0;
 }

@@ -1,8 +1,11 @@
 //loginUser.cpp
 #include "../lib/lib.hpp"
 
-bool checkBlockStatus(User& user, const std::time_t& currentTime) {
-    double minutes = std::difftime(currentTime, user.last_failed_time) / 60;
+using namespace std;
+
+// Проверяем временную блокировку 
+bool checkBlockStatus(User& user, const time_t& currentTime) {
+    double minutes = difftime(currentTime, user.last_failed_time) / 60;
     if (minutes >= 30) {
         user.failed_attempts = 0;
         return false; // Аккаунт не заблокирован
@@ -12,31 +15,32 @@ bool checkBlockStatus(User& user, const std::time_t& currentTime) {
     }
     return false; // Аккаунт не заблокирован
 }
-
-bool loginUser(std::map<std::string, User>& users) {
-    std::string username, password;
-    std::wcout << L"Введите имя: ";
-    std::cin >> username;
-    password = getPassword();
-    std::time_t now = std::time(nullptr);
+// Вход пользователя
+bool loginUser(map<string, User>& users) {
+    string username, password;
+    wcout << L"Введите имя: ";
+    cin >> username;
+    time_t now = time(nullptr);
     auto user = users.find(username);
     if (user != users.end()) {
-        if (checkBlockStatus(user->second, now)) {
-            std::wcout << L"Пользователь временно заблокирован. Попробуйте позже.\n";
-            return 1;
-        }
+        password = getPassword();
         if (user->second.password == password) {
-            user->second.failed_attempts = 0;
-            std::wcout << L"Вход выполнен. Здравствуйте ";
-            std::cout << username << std::endl << std::endl;
-            showData(user->second.role);
+            if (checkBlockStatus(user->second, now)) {
+                wcout << L"Пользователь временно заблокирован. Попробуйте позже.\n";
+                return 1;
+            } else {
+                user->second.failed_attempts = 0;
+                wcout << L"Вход выполнен. Здравствуйте ";
+                cout << username << endl << endl;
+                showData(user->second.role);
+            }
         } else {
             user->second.failed_attempts++;
             user->second.last_failed_time = now;
-            std::wcout << L"Вход не выполнен. Неверный пароль\n";
+            wcout << L"Вход не выполнен. Неверный пароль\n";
         }
     } else {
-        std::wcout << L"Пользователь не найден.\n";
+        wcout << L"Пользователь не найден.\n";
     }
     return 0;
 }
